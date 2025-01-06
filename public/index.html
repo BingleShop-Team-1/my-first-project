@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer.Fingerspot.iO - Natal Edition</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://images.unsplash.com/photo-1543852786-1cf6624b9987') no-repeat center center fixed;
+            background-size: cover;
+            color: #343a40;
+        }
+
+        .navbar {
+            background-color: #B22222; /* Warna merah Natal */
+        }
+
+        .navbar-brand {
+            color: #FFF8DC;
+            font-weight: bold;
+        }
+
+        .navbar-brand:hover {
+            color: #FFD700; /* Warna emas */
+        }
+
+        h2 {
+            color: #B22222;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #FFD700; /* Emas */
+        }
+
+        /* Tabel */
+        .table-responsive {
+            background-color: rgba(255, 248, 220, 0.8); /* Warna latar belakang tabel */
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        table th {
+            background-color: #B22222;
+            color: #FFD700; /* Emas */
+            font-size: 1.1em;
+            border-top: none;
+        }
+
+        table td {
+            color: #333;
+            border-top: 1px solid #FFD700;
+        }
+
+        /* Tombol */
+        .btn-primary {
+            background-color: #008000;
+            border-color: #006400;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 128, 0, 0.5);
+        }
+
+        .btn-primary:hover {
+            background-color: #32CD32;
+            border-color: #228B22;
+        }
+
+        .btn-success {
+            background-color: #FFD700;
+            border-color: #DAA520;
+            color: #B22222;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+        }
+
+        .btn-success:hover {
+            background-color: #FFE4B5;
+            border-color: #DAA520;
+        }
+
+        /* Efek Salju */
+    .snowflake {
+        position: fixed;
+        top: -10px;
+        z-index: 1000;
+        color: #FFF;
+        font-size: 1.5em;
+        user-select: none;
+        pointer-events: none;
+        animation: fall linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+    }
+
+    /* Variasi ukuran dan durasi animasi salju */
+    .snowflake:nth-of-type(odd) {
+        animation-duration: 10s;
+        font-size: 1.2em;
+        left: calc(100% * var(--position));
+    }
+
+    .snowflake:nth-of-type(even) {
+        animation-duration: 15s;
+        font-size: 1.6em;
+        left: calc(100% * var(--position));
+    }
+
+    .snowflake:nth-of-type(3n) {
+        animation-duration: 20s;
+        font-size: 1.8em;
+        left: calc(100% * var(--position));
+    }
+
+        /* Footer */
+        footer {
+            background-color: #B22222;
+            color: #FFF8DC;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #FFD700;
+        }
+
+        footer a:hover {
+            color: #DAA520;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Efek Salju -->
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❄</div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Developer.Fingerspot.iO</a>
+        <form id="excelFileForm" class="form-inline ml-auto" enctype="multipart/form-data">
+            <input type="file" id="excelFile" name="file" class="form-control mr-2" accept=".xlsx, .xls" required>
+            <button type="submit" class="btn btn-primary">Unggah Excel</button>
+        </form>
+    </nav>
+
+    <!-- Konten Utama -->
+    <div class="container mt-5">
+        <h2>Bagaimana Cara Kerjanya?</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/9EL1C_-akvQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-4">
+                <img src="https://mentorit.com.np/wp-content/uploads/2016/10/red-hat-enterprise-linux-workstation-standard-subscription-rh0958488f3-redhat-0g559-1.jpg" alt="Ilustrasi" class="img-fluid rounded shadow-sm" />
+                <p class="mt-3">Pelajari bagaimana webhook bekerja melalui video tutorial dan panduan kami.</p>
+            </div>
+        </div>
+
+        <!-- Bagian Log -->
+        <h2 class="mt-5">Log</h2>
+        <div class="table-responsive">
+            <table id="logTable" class="table table-striped display">
+                <thead>
+                    <tr>
+                        <th>Cloud ID</th>
+                        <th>Jenis</th>
+                        <th>Dibuat Pada</th>
+                        <th>Data Asli</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Log akan diisi di sini -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tombol Ekspor -->
+        <button id="exportLogs" class="btn btn-success mt-3">Ekspor Log ke Excel</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Webhook Developer Fingerspot</p>
+        <a href="#">Kebijakan Privasi</a> | <a href="#">Syarat & Ketentuan</a>
+    </footer>
+
+    <!-- jQuery dan Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        $(document).ready(function () {
+            const socket = io();
+            let table = $('#logTable').DataTable({ "order": [[2, "desc"]] });
+
+            socket.on('update', function (newData) {
+                table.row.add([
+                    newData.cloud_id || 'N/A',
+                    newData.type || 'N/A',
+                    newData.created_at || 'N/A',
+                    `<code>${newData.original_data || 'N/A'}</code>`
+                ]).draw();
+                table.order([[2, 'desc']]).draw();
+                alert('Halo ada data masuk!');
+            });
+
+            $.getJSON('/log', function (logs) {
+                logs.forEach(log => {
+                    table.row.add([
+                        log.cloud_id || 'N/A',
+                        log.type || 'N/A',
+                        log.created_at || 'N/A',
+                        `<code>${log.original_data || 'N/A'}</code>`
+                    ]).draw();
+                });
+                table.order([[2, 'desc']]).draw();
+            }).fail(function () {
+                console.error('Error fetching logs');
+                table.clear().rows.add([['Gagal mengambil log', '', '', '']]).draw();
+            });
+
+            $('#excelFileForm').on('submit', function (event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '/upload-excel',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        alert(response.message);
+                    },
+                    error: function () {
+                        alert('Error uploading file');
+                    }
+                });
+            });
+        });
+
+        // Fungsi untuk membuat salju dengan posisi acak
+    function createSnowflakes(count) {
+        for (let i = 0; i < count; i++) {
+            let snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerText = '❄';
+            // Mengatur posisi acak di layar
+            snowflake.style.setProperty('--position', Math.random());
+            document.body.appendChild(snowflake);
+        }
+    }
+
+    // Memanggil fungsi dan menciptakan sekitar 50 elemen salju
+    createSnowflakes(50);
+
+    </script>
+</body>
+</html>

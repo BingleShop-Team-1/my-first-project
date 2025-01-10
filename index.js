@@ -18,9 +18,9 @@ const port = 3000;
 
 
 // Konfigurasi Google Sheets
-const SCOPES = [''];
-const CREDENTIALS_PATH = '';
-const SPREADSHEET_ID = '';
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
+const CREDENTIALS_PATH = 'psychic-outcome-442813-a4-fd0a3e851d9c.json';
+const SPREADSHEET_ID = '1VSmO1Jbftt0Ym6bGgN0JMl-uAP6kjH0_5_C5EQs5lQU';
 const SHEET_RANGE = 'Sheet1';
 
 // Middleware
@@ -73,15 +73,15 @@ db.query(createTableQuery, (err) => {
 });
 
 // Token bot Telegram dan ID chat
-const TELEGRAM_BOT_TOKEN = ''; // Ganti dengan token bot Anda
-const CHAT_ID = ''; // Ganti dengan chat ID atau grup ID Anda
+const TELEGRAM_BOT_TOKEN = '7390265210:AAFAFKwsl8OVe-VvCafxVBGhfaQCiQNWsFg'; // Ganti dengan token bot Anda
+const CHAT_ID = '1421950780'; // Ganti dengan chat ID atau grup ID Anda
 
 // Token bot Telegram dan ID chat
-const TELEGRAM_BOT_TOKEN1 = ''; // Ganti dengan token bot Anda
-const CHAT_ID1 = ''; // Ganti dengan chat ID atau grup ID Anda
+const TELEGRAM_BOT_TOKEN1 = '7269989921:AAEDVrc3hBFDCuqblhV8Pga5a3NaFvPR5iw'; // Ganti dengan token bot Anda
+const CHAT_ID1 = '1421950780'; // Ganti dengan chat ID atau grup ID Anda
 
 // URL webhook Telegram
-const TELEGRAM_WEBHOOK_URL = ''; // Ganti dengan URL webhook Anda
+const TELEGRAM_WEBHOOK_URL = 'https://my-first-project-2ehp4bkgn-mojs-projects-3f2e8dad.vercel.app/'; // Ganti dengan URL webhook Anda
 
 
 // Fungsi untuk mengirim pesan ke Telegram
